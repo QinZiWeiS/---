@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 20px;
+            height: 20px;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box" class="box"></div>
+
+    <script>
+        function thro(fn, delay) {
+            let lastTime = 0
+            return function () {
+                let nowTime = Date.now()
+                if (nowTime - lastTime > delay) {
+                    fn.call(this)
+                    lastTime = nowTime
+                }
+            }
+        }
+
+        document.getElementById("box").onclick = thro(function () {
+            console.log("按钮被点击")
+        }, 2000)
+    </script>
+</body>
+
+</html>
