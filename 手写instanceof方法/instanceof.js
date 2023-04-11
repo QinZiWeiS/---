@@ -9,3 +9,11 @@ function myinstanceof(left, right) {
         proto = Object.getPrototypeOf(proto);
     }
 }
+
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.eat = function () {
+        console.log(age + "岁的" + name + "在吃饭。")
+    }
+}
