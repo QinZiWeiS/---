@@ -24,7 +24,21 @@ function deepClone(obj) {
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       newObj[key] =
-        typeof obj[key] === "object" ? deepClone(newObj[key]) : obj[key];
+        typeof obj[key] === "object" ? deepClone(obj[key]) : obj[key];
+    }
+  }
+}
+
+function deepClone(obj) {
+  if (typeof obj !== "object") return;
+
+  let newObj = Array.isArray(obj) ? [] : {};
+
+  for (let key in obj) {
+    if (obj[key] === obj) return;
+    if (obj.hasOwnProperty(key)) {
+      newObj[key] =
+        typeof obj[key] === "object" ? deepClone(obj[key]) : obj[key];
     }
   }
 }

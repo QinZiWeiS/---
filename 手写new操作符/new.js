@@ -49,3 +49,15 @@ function myNew() {
 
   return typeof res === "object" ? res : obj;
 }
+
+function mynew() {
+  let constructor = Array.prototype.shift().call(arguments);
+  if (typeof constructor !== "function") return;
+  let args = [...arguments];
+
+  let newObj = Object.create(constructor);
+
+  let res = constructor.apply(newObj, args);
+
+  return typeof res === "object" ? res : newObj;
+}

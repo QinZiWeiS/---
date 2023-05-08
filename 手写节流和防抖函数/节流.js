@@ -31,3 +31,14 @@ function jieliu(fn, durTime) {
     }
   };
 }
+
+function jieliu(fn, durTime) {
+  let lastTime = 0;
+  return function () {
+    let nowTime = Date.now();
+    if (nowTime - lastTime > durTime) {
+      fn.apply(this);
+      lastTime = nowTime;
+    }
+  };
+}

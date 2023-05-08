@@ -52,3 +52,12 @@ function myBind(context) {
     return this.apply(context, args.concat(innerArgs));
   };
 }
+
+function myBind(context) {
+  let context = context || window;
+  let args = [...arguments].slice(1);
+  return function () {
+    let innerArg = [...arguments];
+    return this.apply(context, args.concat(innerArg));
+  };
+}

@@ -13,3 +13,9 @@ Object.prototype.create = function (constructor) {
 };
 let p1 = Object.create(Person());
 console.log(p1.name);
+
+function create(constructor) {
+  function Fn() {}
+  Fn.prototype = constructor;
+  return new Fn();
+}

@@ -44,3 +44,12 @@ function myTypeof(val) {
 
 let arr = [1, 2, 3];
 console.log(myTypeof(arr));
+
+function myTypeof(value) {
+  if (value == null) return value.toString();
+
+  if (typeof value !== "object") return typeof value;
+
+  return Array.isArray(value) ? "Array" : "Object";
+}
+console.log(myTypeof(arr));

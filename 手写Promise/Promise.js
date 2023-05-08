@@ -173,3 +173,25 @@ class myPromise {
     });
   }
 }
+
+function mythen(resolve, reject) {
+  let resolveFn = typeof resolve === "function" ? resolve : (value) => value;
+  let rejectFn = typeof reject === "function" ? reject : (err) => err;
+  const self = this;
+
+  return new Promise((resolve, reject) => {
+    let resolved = () => {
+      res = resolveFn(self.res);
+      return res instanceof Promise ? res.then(resolve, reject) : resolve(res);
+    };
+
+    if (this.status === "fulfilled") {
+      resolved();
+    } else if (this.status === "rejected") {
+      rejected();
+    } else {
+      this.resolveArr.push(resolved);
+      this.rejectArr.push(rejected);
+    }
+  });
+}
