@@ -1,15 +1,21 @@
 function myFlat1(arr) {
-    return arr.reduce((pre, cur) =>
-        pre.concat(Array.isArray(cur) ? myFlat1(cur) : cur)
-        , [])
+  return arr.reduce(
+    (pre, cur) => pre.concat(Array.isArray(cur) ? myFlat1(cur) : cur),
+    []
+  );
 }
-
 
 function myFlat2(arr) {
-    let str = JSON.stringify(arr);
-    return str.replace(/(\[|\])/g, '').split(',');
+  let str = JSON.stringify(arr);
+  return str.replace(/(\[|\])/g, "").split(",");
 }
 
-let arr = [1, 2, 3, [12, [123, [123]]]]
+let arr = [1, 2, 3, [12, [123, [123]]]];
 
-console.log(myFlat1(arr), myFlat2(arr))
+console.log(myFlat1(arr), myFlat2(arr));
+
+function myflat(arr) {
+  return arr.reduce((pre, cur) => {
+    return pre.concat(Array.isArray(cur) ? myflat(cur) : cur);
+  }, []);
+}

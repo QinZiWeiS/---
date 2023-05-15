@@ -50,7 +50,7 @@ function myCall(context) {
   let fn = Symbol();
   context[fn] = this;
   let args = [...arguments].slice(1);
-  context[fn](args);
+  context[fn](...args);
   delete context[fn];
 }
 
@@ -59,6 +59,24 @@ function myApply(context) {
   let fn = Symbol();
   context[fn] = this;
   let args = arguments[1] || [];
-  context[fn](args);
+  context[fn](...args);
+  delete context[fn];
+}
+
+function myCall(context) {
+  context = context || window;
+  let fn = Symbol();
+  context[fn] = this;
+  let args = [...arguments].slice(1);
+  context[fn](...args);
+  delete context[fn];
+}
+
+function myApply(context) {
+  let context = context || window;
+  let fn = Symbol();
+  context[fn] = this;
+  let args = arguments[1] || [];
+  context[fn](...args);
   delete context[fn];
 }

@@ -19,3 +19,9 @@ function create(constructor) {
   Fn.prototype = constructor;
   return new Fn();
 }
+
+function myCreate(constructor) {
+  function fn() {}
+  fn.prototype = constructor;
+  return new fn();
+}

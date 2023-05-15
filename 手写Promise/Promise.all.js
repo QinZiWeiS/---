@@ -25,7 +25,7 @@ function myAll(promises) {
     let len = promises.length;
     let res = [];
     for (let i = 0; i < len; i++) {
-      promises[i].resolve().then(
+      Promise.resolve(promises[i]).then(
         (value) => {
           res[i] = value;
           if (i + 1 === len) {
@@ -36,6 +36,25 @@ function myAll(promises) {
           return reject(err);
         }
       );
+    }
+  });
+}
+
+function myAll(promises) {
+  return new Promise((reject, resolve) => {
+    let len = promises.length;
+    let res = [];
+    for (let i = 0; i < len; i++) {
+      Promise.resolve(promises[i])
+        .then((value) => {
+          res[i] = value;
+          if (i + 1 === len) {
+            resolve(res);
+          }
+        })
+        .catch((err) => {
+          return reject(err);
+        });
     }
   });
 }

@@ -61,3 +61,21 @@ function myBind(context) {
     return this.apply(context, args.concat(innerArg));
   };
 }
+
+function myBind(context) {
+  let context = context || window;
+  let args = [...arguments].slice(1);
+  return function () {
+    let innerArgs = [...arguments];
+    return this.apply(context, args.concat(innerArgs));
+  };
+}
+
+function myBind(context) {
+  let context = context || window;
+  let args = [...arguments].slice(1);
+  return function () {
+    let innerArgs = [...arguments];
+    return this.apply(context, args.concat(innerArgs));
+  };
+}

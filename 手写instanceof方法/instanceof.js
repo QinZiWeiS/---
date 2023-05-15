@@ -28,3 +28,15 @@ function myinstanceof(left, right) {
   }
   return false;
 }
+
+function instanceOf(left, right) {
+  let proto = Object.getPrototypeOf(left);
+  let prototype = right.prototype;
+
+  while (proto) {
+    if (proto === prototype) return true;
+    proto = Object.getPrototypeOf(proto);
+  }
+
+  return false;
+}

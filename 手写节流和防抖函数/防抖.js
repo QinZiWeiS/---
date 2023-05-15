@@ -36,3 +36,13 @@ function debounce(fn, delaytime) {
     }, delaytime);
   };
 }
+
+function debounce(fn, delayTime) {
+  let timer = null;
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(this);
+    }, delayTime);
+  };
+}
